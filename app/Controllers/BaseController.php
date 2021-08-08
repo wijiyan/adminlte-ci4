@@ -6,6 +6,9 @@ use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Libraries\Template;
+use App\Helper\my_helper;
+
 
 /**
  * Class BaseController
@@ -29,6 +32,9 @@ class BaseController extends Controller
 	 */
 	protected $helpers = [];
 
+	# Create protected variable
+	protected $template;
+
 	/**
 	 * Constructor.
 	 *
@@ -45,5 +51,8 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
+		$this->template = new Template();
+		$session = \Config\Services::session();
+		$this->session = session();
 	}
 }
